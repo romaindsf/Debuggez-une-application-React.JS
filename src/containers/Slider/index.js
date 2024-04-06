@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
+// getMonth a été modifié (de 1 à 12 => 0 à 11)
 
 import "./style.scss";
 
@@ -10,21 +11,30 @@ const Slider = () => {
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   );
+  // inverser 1 et -1 pour que ce soit trier du plus ancien au plus récent
   const nextCard = () => {
-    setTimeout(
-      () => setIndex(index < byDateDesc.length ? index + 1 : 0),
-      5000
-    );
+    setTimeout(() => {
+      if (byDateDesc) {
+        setIndex(index < byDateDesc.length - 1 ? index + 1 : 0);
+      } else {
+        setIndex(0);
+      }
+    }, 5000);
   };
+      // on assure que "byDateDesc" est défini pour ne pas avoir erreur
+      // "Uncaught TypeError: Cannot read properties of undefined (reading 'length')"
+      // au premier défilement sur le slider
+  // ajout de "-1" "byDateDesc.length - 1 ?" pour enlever l'image blanche
   useEffect(() => {
-    nextCard();
-  });
+    nextCard()
+  })
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
         <>
           <div
-            key={event.title}
+            // eslint-disable-next-line react/no-array-index-key
+            key={`${event.id}=${idx}`}
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
             }`}
@@ -40,13 +50,17 @@ const Slider = () => {
           </div>
           <div className="SlideCard__paginationContainer">
             <div className="SlideCard__pagination">
-              {byDateDesc.map((_, radioIdx) => (
+            {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={`${event.id}`}
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={radioIdx}
                   type="radio"
                   name="radio-button"
-                  checked={idx === radioIdx}
+                  checked={index === radioIdx}
+                  onChange={() => {}}
                 />
+                // attributs key et input modifiés pour que les dots fonctionnent
+                // added an empty on change function to remove error on console
               ))}
             </div>
           </div>
