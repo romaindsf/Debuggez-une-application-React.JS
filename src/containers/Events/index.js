@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import EventCard from '../../components/EventCard'
 import Select from '../../components/Select'
 import { useData } from '../../contexts/DataContext'
@@ -14,10 +14,10 @@ const EventList = () => {
   const [type, setType] = useState()
   const [currentPage, setCurrentPage] = useState(1)
 
-  useEffect(() => {
-    console.log(`type =${type}`)
-  }, [type])
-  //  a retirer later
+  // useEffect(() => {
+  //   console.log(`type =${type}`)
+  // }, [type])
+  // a retirer later
 
   const filteredEvents = (
     (!type
