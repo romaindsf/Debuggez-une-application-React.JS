@@ -33,6 +33,7 @@ const Slider = () => {
       {byDateDesc?.map((event, idx) => (
         // eslint-disable-next-line react/no-array-index-key
         <div key={`div${idx}`}>
+          {/* le reactFragment '<>' devait prendre un attibrut 'key' */}
           <div
             // eslint-disable-next-line react/no-array-index-key
             key={`slide${idx}`}
