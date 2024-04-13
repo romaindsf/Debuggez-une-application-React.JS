@@ -19,9 +19,6 @@ const Page = () => {
   )
   const last = sortDataEvents?.[0]
   // il fallait définir 'last' => l'événement le plus récent
-  // useEffect(() => {
-  //   console.log(last)
-  // })
 
   return (
     <>

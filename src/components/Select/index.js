@@ -15,12 +15,6 @@ const Select = ({
 }) => {
   const [value, setValue] = useState()
   const [collapsed, setCollapsed] = useState(true)
-
-  // useEffect(() => {
-  //   console.log(`value = ${value}`)
-  // }, [value])
-  // a retirer later
-
   const changeValue = (newValue) => {
     setValue(newValue)
     setCollapsed(newValue)

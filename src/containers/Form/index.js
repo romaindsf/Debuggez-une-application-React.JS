@@ -46,7 +46,7 @@ const Form = ({ onSuccess, onError }) => {
             type={BUTTON_TYPES.SUBMIT}
             disabled={sending}
             data-testid="button-test-id"
-            // ajout attribut data-testid pour valider le test
+            // ajout de l'attribut data-testid pour valider le test
           >
             {sending ? 'En cours' : 'Envoyer'}
           </Button>

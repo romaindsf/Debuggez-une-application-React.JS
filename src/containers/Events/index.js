@@ -14,24 +14,21 @@ const EventList = () => {
   const [type, setType] = useState()
   const [currentPage, setCurrentPage] = useState(1)
 
-  // useEffect(() => {
-  //   console.log(`type =${type}`)
-  // }, [type])
-  // a retirer later
-
   const filteredEvents = (
     (!type
       ? data?.events
       : data?.events.filter((event) => event.type === type)) || []
-  ).filter((event, index) => {
-    if (
-      (currentPage - 1) * PER_PAGE <= index &&
-      PER_PAGE * currentPage > index
-    ) {
-      return true
-    }
-    return false
-  })
+  )
+    // si 'type' existe (n'est pas undefined) alors 'data.events' est filtré
+    .filter((event, index) => {
+      if (
+        (currentPage - 1) * PER_PAGE <= index &&
+        PER_PAGE * currentPage > index
+      ) {
+        return true
+      }
+      return false
+    })
   const changeType = (evtType) => {
     setCurrentPage(1)
     setType(evtType)

@@ -11,7 +11,7 @@ const Slider = () => {
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   )
-  // inverser 1 et -1 pour que ce soit trier du plus ancien au plus récent
+  // inverser 1 et -1 pour que les événements soient trier du plus ancien au plus récent
   const nextCard = () => {
     setTimeout(() => {
       if (byDateDesc) {
@@ -21,9 +21,7 @@ const Slider = () => {
       }
     }, 5000)
   }
-  // on assure que "byDateDesc" est défini pour ne pas avoir erreur
-  // "Uncaught TypeError: Cannot read properties of undefined (reading 'length')"
-  // au premier défilement sur le slider
+  // on assure que "byDateDesc" est défini pour ne pas avoir d'erreur au premier défilement sur le slider
   // ajout de "-1" "byDateDesc.length - 1 ?" pour enlever l'image blanche
   useEffect(() => {
     nextCard()
@@ -62,7 +60,7 @@ const Slider = () => {
                   onChange={() => {}}
                 />
                 // attributs key et input modifiés pour que les dots fonctionnent
-                // added an empty on change function to remove error on console
+                // ajouté une fonction onChange vide pour supprimer l'erreur dans la console
               ))}
             </div>
           </div>
